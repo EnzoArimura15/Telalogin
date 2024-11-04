@@ -26,7 +26,7 @@
             
             //verificar se o email já está cadastrado
             $sql = $pdo->prepare("SELECT id_usuario FROM usuario WHERE email = :m");
-            // :arimura siginfica que colocamos um apelido na variável email do PHP
+            // :m siginfica que colocamos um apelido na variável email do PHP
             $sql->bindValue(":m",$email);
             $sql->execute();
 
@@ -42,11 +42,35 @@
                 $sql->bindValue(":n", $nome); 
                 $sql->bindValue(":t", $telefone);
                 $sql->bindValue(":e", $email);
-                $sql->bindValue(":s", $senha);
+                $sql->bindValue(":s",md5($senha));
                 $sql->execute();
-                return false;
+                return true;
             }
 
+        }
+
+        public function logar($email,$senha)
+        {
+            global $pdo;
+
+            $verificarEmail = $pdo->prepare("SELECT id_usuario FROM usuario WHERE email = :e AND senha =:s");
+            $verificarEmail->bindValue(":e", $email);
+            $verificarEmail->bindValue(":s", md5($senha));
+            $verificarEmail->execute();
+
+            if($verificarEmail->rowCount()>0)
+            {
+                //posso logar no sistema, pois o email e senha existe no banco de dados e estão de acordo.
+                $dados = $verificarEmail->fetch();
+                session_start();
+                $_SESSION['id_usuario'] = $dados['id_usuario'];
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
         }
 
 
