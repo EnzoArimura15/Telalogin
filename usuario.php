@@ -88,11 +88,43 @@
             {
                 return false;
             }
+            
+        }
+        public function getUsuario($email)
+        {
+            global $pdo;
+
+
+            $sqlEditar = $pdo->prepare("SELECT * FROM usuario WHERE email = :m");
+            $sqlEditar->bindValue(":m", $email);
+            $sqlEditar->execute();
+            if($sqlEditar->rowCount()>0)
+            {
+                $dados = $sqlEditar->fetch();
+                return $dados;
+            }
+            else
+            {
+                return false;
+            }
         }
 
+        public function editarUsuario($nome, $email, $telefone, $id)
+        {
+            global $pdo;
 
+            $sqlEditar = $pdo->prepare("UPDATE usuario set nome = :n, email = :e, telefone = :t WHERE id_usuario = :i");
+            $sqlEditar->bindValue(":n", $nome);
+            $sqlEditar->bindValue(":e", $email);
+            $sqlEditar->bindValue(":t", $telefone);
+            $sqlEditar->bindValue(":i", $id);
+            $sqlEditar->execute();
+        }
 
     }
+
+
+
 
 
 ?>
