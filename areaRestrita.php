@@ -4,8 +4,6 @@
     $usuario->conectar("cadastrousuarioturma33","localhost","root", "");
     $dados = $usuario->listarUsuarios();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -33,7 +31,7 @@
                     foreach ($dados as $pessoa):
             ?>
                 <tr>
-                    <form action="editar.php" method="get">
+                    <form method="get">
                         <td>
                             <input type="text" name="nome" value="
                             <?php
@@ -63,7 +61,10 @@
                             " disabled>
                         </td>
                         <td>
-                            <input type="submit" value="editar">
+                            <a href="editar.php?email=<?=$pessoa['email']?>"> EDITAR </a>
+                        </td>
+                        <td>
+                            <a href="deletar.php?id=<?=$pessoa['id_usuario']?>"> DELETAR </a>
                         </td>
                     </form>
                 </tr>
