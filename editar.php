@@ -5,14 +5,10 @@
 
     if (isset($_GET)) {
 
-        $id = $_GET['id'];
+        $email = $_GET['email'];
 
-        $enzo = $usuario->getUsuario($id);
+        $enzo = $usuario->getUsuario($email);
 
-        if (isset($enzo)) {
-
-            print_r ($enzo);  
-        }
     }
 
     if (!empty($_POST['nome']))
@@ -36,22 +32,15 @@
 <body>
     <h2>Edição DE USUÁRIO</h2><br>
     <form action="" method="post">
-
+        <input type="hidden" name="id" value="<?php echo $enzo['id_usuario'];?>" ><br>        
         <label>Nome:</label><br>
-        <input type="text" name="nome" value="<?php echo $enzo['nome'];?>" ><br>
-        
+        <input type="text" name="nome" value="<?php echo $enzo['nome'];?>" ><br>        
         <label>Email:</label><br>
-        <input type="email" name="email" value="<?php echo $enzo['email'];?>"><br>
-        
+        <input type="email" name="email" value="<?php echo $enzo['email'];?>"><br>       
         <label>Telefone:</label><br>
         <input type="text" name="telefone" value="<?php echo $enzo['telefone'];?>"><br>
-        
         <label>Senha:</label><br>
         <input type="password" name="senha" value="<?php echo $enzo['senha'];?>"><br>
-        
-        <label>confSenha:</label><br>
-        <input type="password" name="confSenha" value="<?php echo $enzo['confSenha'];?>" ><br>
-
     <input type="submit" value="Salvar">
     </form>
 

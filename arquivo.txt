@@ -1,0 +1,14 @@
+<td><?php echo $pessoa['nome'];?></td>
+                    <td><?php echo $pessoa['email'];?></td>
+                    <td><?php echo $pessoa['telefone'];?></td>
+
+                    
+<td>
+                    <a href="editar.php"><button class = "btn-edit-enzo">  
+                    <i class="fa-regular fa-pen-to-square"></i>
+                    </button>
+                </a>
+                <button class = "btn-delete-enzo">
+                <i class="fa-solid fa-trash"></i>
+                </button>
+                    </td>

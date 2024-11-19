@@ -33,20 +33,39 @@
                     foreach ($dados as $pessoa):
             ?>
                 <tr>
-                    <td><?php echo $pessoa['nome'];?></td>
-                    <td><?php echo $pessoa['email'];?></td>
-                    <td><?php echo $pessoa['telefone'];?></td>
-                    <td>
-                    <a href="editar.php"><button class = "btn-edit-enzo">  
-                    <i class="fa-regular fa-pen-to-square"></i>
-                    </button>
-                </a>
-                <a href="deletar.php">
-                <button class = "btn-delete-enzo">
-                <i class="fa-solid fa-trash"></i>
-                </button>
-                </a>
-                    </td>
+                    <form action="editar.php" method="get">
+                        <td>
+                            <input type="text" name="nome" value="
+                            <?php
+                            echo $pessoa['nome'];
+                            ?>
+                            " disabled>
+                        </td>
+                        <td>
+                            <input type="email" name="email" value="
+                            <?php
+                            echo $pessoa['email'];
+                            ?>
+                            " >
+                        </td>
+                        <td>
+                            <input type="text" name="telefone" value="
+                            <?php
+                            echo $pessoa['telefone'];
+                            ?>
+                            " disabled>
+                        </td>
+                        <td>
+                            <input type="text" name="senha" value="
+                            <?php
+                            echo $pessoa['senha'];
+                            ?>
+                            " disabled>
+                        </td>
+                        <td>
+                            <input type="submit" value="editar">
+                        </td>
+                    </form>
                 </tr>
                 <?php 
                 endforeach;
